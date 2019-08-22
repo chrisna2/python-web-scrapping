@@ -61,8 +61,8 @@ DataFrame 이라는 구조의 데이터를 표현하는 데이터 타입
 df = pd.DataFrame(product_list)
 df.columns = ['상품명', '가격', '좋아요', '이미지']
 
+# 엑셀로 저장 하려면 pip install openpyxl
 df.to_excel('D:\\tyn_dev\\workspace_pycham\\web-scrapping\\excel_files\\쿠팡로켓배송리스트.xlsx', index=False)
-
 
 print('엑셀 저장 완료!')
 

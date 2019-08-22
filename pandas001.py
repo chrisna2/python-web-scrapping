@@ -19,4 +19,5 @@ new_df = csv_df.loc[csv_df['수강금액'] >= 800000]
 
 
 # 엑셀로 바로 변환이 가능
+# 엑셀로 저장 하려면 pip install openpyxl
 new_df.to_excel('D:\\tyn_dev\\workspace_pycham\\web-scrapping\\excel_files\\고액수강생.xlsx', index=False)
