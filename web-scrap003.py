@@ -7,10 +7,10 @@
 """
 
 # 3단계 : 파이썬 데이터로 만든다. (list, dicr... 즉, 메모리로 올린다.)
-# 4단계 : 메모리에 있는 데이터를 저장(공유)한다.
 
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 # 1. 데이터 확보
 headers = {
@@ -51,4 +51,19 @@ for li_tag in soup.select('#productList > li'):
 
 print(product_list)
 # 3. 엑셀로 저장한다
-# pandas 를 사용한다. 우왕궅
+# pandas 를 사용한다. 데이터 가공하는 모듈중 최강, AI 에도 연동, 웬만한 데이터는 처리가 가능하다.
+
+
+# 4단계 : 메모리에 있는 데이터를 저장(공유)한다.
+'''
+DataFrame 이라는 구조의 데이터를 표현하는 데이터 타입
+'''
+df = pd.DataFrame(product_list)
+df.columns = ['상품명', '가격', '좋아요', '이미지']
+
+df.to_excel('D:\\tyn_dev\\workspace_pycham\\web-scrapping\\excel_files\\쿠팡로켓배송리스트.xlsx', index=False)
+
+
+print('엑셀 저장 완료!')
+
+
