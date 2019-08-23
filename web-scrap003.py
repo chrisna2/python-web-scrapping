@@ -11,6 +11,9 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from sqlalchemy import types, create_engine
+
+
 
 # 1. 데이터 확보
 headers = {
@@ -21,7 +24,7 @@ res = requests.get('https://www.coupang.com/np/campaigns/82/components/178155', 
 
 soup = BeautifulSoup(res.text, 'html.parser')
 
-# 2. 데이터를 수집하여 list of list로 만든다.
+# 2. 데이터를 수집하여 [[list of list]]로 2차원 데이터 만든다.
 product_list = []
 
 # #productList > li 가 li_tag의 root tag다
@@ -56,7 +59,9 @@ print(product_list)
 
 # 4단계 : 메모리에 있는 데이터를 저장(공유)한다.
 '''
-DataFrame 이라는 구조의 데이터를 표현하는 데이터 타입
+Padas => DataFrame 이라는 구조의 데이터를 표현하는 데이터 타입
+[[list of list]] <-> "DataFrame" 으로 전환 가능
+엑셀로는 처리가 안되는 부분도 가능함
 '''
 df = pd.DataFrame(product_list)
 df.columns = ['상품명', '가격', '좋아요', '이미지']
@@ -66,4 +71,14 @@ df.to_excel('D:\\tyn_dev\\workspace_pycham\\web-scrapping\\excel_files\\쿠팡�
 
 print('엑셀 저장 완료!')
 
+# df.to_sql()
 
+
+'''
+과제 : 쿠팡의 데이터를 DB에 저장해 보기
+
+☆ panda dataframe rdb export
+1. df.to_csv로 export => DB툴로 IMPORT
+☆ panda dataframe to oracle database
+1. to_sql 
+'''
